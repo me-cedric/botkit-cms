@@ -22,6 +22,8 @@
     "url": "https://github.com/howdyai/botkit-cms/issues"
   },
   "scripts": {
+    "watch": "nodemon --watch js --watch src --watch views --watch sass -e js,hbs,css,html,json --exec npm run serve",
+    "serve": "npm run build && npm run start",
     "start": "node index.js",
     "build": "./node_modules/gulp/bin/gulp.js",
     "gulp": "./node_modules/gulp/bin/gulp.js",
@@ -36,6 +38,7 @@
     "express": "^4.15.3",
     "express-basic-auth": "^1.1.5",
     "express-hbs": "^1.0.4",
+    "nodemon": "^2.0.2",
     "querystring": "^0.2.0",
     "uuid": "^3.3.2"
   },
