@@ -13,7 +13,8 @@
                 <button class="delete" ng-click="deleteMeta(meta,$index)"></button>
             </div>
             <div class="cell">
-                <input type="text" placeholder="Key" class="action-text" maxlength="14" ng-model="meta.key" ng-change="makeDirty()" />
+                <input type="text" placeholder="Key" class="action-text" maxlength="14" ng-model="meta.key"
+                    ng-change="makeDirty()" />
             </div>
             <div class="cell">
                 <input type="text" placeholder="Value" ng-model="meta.value" ng-change="makeDirty()" />
@@ -21,6 +22,50 @@
         </li>
         <li class="placeholder_button">
             <button ng-click="addMetaVar();">Add Custom Field</button>
+        </li>
+    </ul>
+</div>
+
+<div class="panel">
+    <ul ng-if="ui.outgoing_message.step && ui.outgoing_message.step.length>0">
+        <li class="label">Custom Steps (in order of execution)</label>
+    </ul>
+    <ul class="sheet">
+        <li class="header" ng-if="ui.outgoing_message.step && ui.outgoing_message.step.length>0">
+            <div class="delete">&nbsp;</div>
+            <div class="cell">Key</div>
+            <div class="cell">Value</div>
+        </li>
+        <li ng-class="{invalid: step.invalid};" ng-repeat="step in ui.outgoing_message.step track by $index">
+            <div class="delete">
+                <button class="delete" ng-click="deleteStep(step,$index)"></button>
+            </div>
+            <div class="cell">
+                <select ng-model="step.key" ng-change="makeDirty()">
+                    <option value disabled selected>Choose a step type</option>
+                    <optgroup label="API calls">
+                        <option value="call">call</option>
+                        <option value="bitrise">bitrise</option>
+                        <option value="github">github</option>
+                    </optgroup>
+                    <optgroup label="Generate">
+                        <option value="appList">App list</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                        <option value="fromVar">Variable named</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="cell">
+                <select ng-if="step.key === 'fromVar'" ng-model="step.value" ng-change="makeDirty()">
+                    <option value disabled selected>Choose a variable</option>
+                    <option ng-repeat="item in command.script.variables" value="{% item %}">{% item %}</option>
+                </select>
+                <input ng-if="step.key !== 'fromVar'" type="text" placeholder="Value" ng-model="step.value" ng-change="makeDirty()" />
+            </div>
+        </li>
+        <li class="placeholder_button">
+            <button ng-click="addStepVar();">Add Custom Step</button>
         </li>
     </ul>
 </div>

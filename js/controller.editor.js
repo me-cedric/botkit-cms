@@ -141,6 +141,20 @@ app.controller('webMode', ['$scope', function($scope) {
 
 app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location', '$anchorScroll', '$http', function($scope, $cookies, $sce, sdk, $location, $anchorScroll, $http) {
 
+    $scope.addStepVar = function() {
+        if (!$scope.ui.outgoing_message.step) {
+            $scope.ui.outgoing_message.step = [];
+        }
+        $scope.ui.outgoing_message.step.push({
+            key: 'key',
+            value: 'value'
+        });
+    }
+
+    $scope.deleteStep = function(step, idx) {
+        $scope.ui.outgoing_message.step.splice(idx, 1);
+        $scope.makeDirty();
+    }
 
     $scope.addMetaVar = function() {
         if (!$scope.ui.outgoing_message.meta) {
@@ -827,6 +841,19 @@ app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location'
                     }
 
 
+                }
+
+                // new stuff for meta data
+                if ($scope.command.script.script[t].script[m].step) {
+                    for (var r = 0; r < $scope.command.script.script[t].script[m].step.length; r++) {
+                        if ($scope.command.script.script[t].script[m].step[r].key == '') {
+                            $scope.command.script.script[t].script[m].step[r].invalid = true;
+                            $scope.validationError('Step data must have a key name');
+                            return false;
+                        } else {
+                            delete($scope.command.script.script[t].script[m].step[r].invalid);
+                        }
+                    }
                 }
 
                 // new stuff for meta data
