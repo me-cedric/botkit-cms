@@ -35,6 +35,7 @@
             <div class="delete">&nbsp;</div>
             <div class="cell">Key</div>
             <div class="cell">Value</div>
+            <div class="cell">Optional parameter</div>
         </li>
         <li ng-class="{invalid: step.invalid};" ng-repeat="step in ui.outgoing_message.step track by $index">
             <div class="delete">
@@ -42,14 +43,14 @@
             </div>
             <div class="cell">
                 <select ng-model="step.key" ng-change="makeDirty()">
-                    <option value disabled selected>Choose a step type</option>
                     <optgroup label="API calls">
                         <option value="call">call</option>
                         <option value="bitrise">bitrise</option>
                         <option value="github">github</option>
                     </optgroup>
                     <optgroup label="Generate">
-                        <option value="appList">App list</option>
+                        <option value="generateButtons">Buttons</option>
+                        <option value="generateList">Liste</option>
                     </optgroup>
                     <optgroup label="Other">
                         <option value="fromVar">Variable named</option>
@@ -58,10 +59,22 @@
             </div>
             <div class="cell">
                 <select ng-if="step.key === 'fromVar'" ng-model="step.value" ng-change="makeDirty()">
-                    <option value disabled selected>Choose a variable</option>
-                    <option ng-repeat="item in command.script.variables" value="{% item %}">{% item %}</option>
+                    <option ng-repeat="item in command.script.variables" value="{% '{{vars.' + item + '}}' %}">{% item %}</option>
                 </select>
-                <input ng-if="step.key !== 'fromVar'" type="text" placeholder="Value" ng-model="step.value" ng-change="makeDirty()" />
+                <select ng-if="step.key === 'generateButtons'" ng-model="step.value" ng-change="makeDirty()">
+                    <option value="apps">Apps</option>
+                    <option value="branches">Branches</option>
+                    <option value="envs">Environment</option>
+                </select>
+                <select ng-if="step.key === 'generateList'" ng-model="step.value" ng-change="makeDirty()">
+                    <option value="appList">App list</option>
+                    <option value="branchList">Branch list</option>
+                    <option value="envList">Environment list</option>
+                </select>
+                <input ng-if="step.key !== 'fromVar' && step.key !== 'generateButtons' && step.key !== 'generateList'" type="text" placeholder="Value" ng-model="step.value" ng-change="makeDirty()" />
+            </div>
+            <div class="cell">
+                <input type="text" placeholder="Parameter" ng-model="step.parameter" ng-change="makeDirty()" />
             </div>
         </li>
         <li class="placeholder_button">

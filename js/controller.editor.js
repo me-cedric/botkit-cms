@@ -6,7 +6,6 @@ app.directive('keypressEvents', ['$rootScope', '$document', function($rootScope,
                 if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
                     e.preventDefault();
                     $rootScope.$broadcast('should.save');
-                    $
                 }
             });
         }
@@ -147,7 +146,8 @@ app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location'
         }
         $scope.ui.outgoing_message.step.push({
             key: 'key',
-            value: 'value'
+            value: 'value',
+            parameter: ''
         });
     }
 
@@ -2402,10 +2402,12 @@ app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location'
                 rendered = rendered + ' <span class="action"><i class="fa fa-check-square" aria-hidden="true"></i> Conversation Complete</span>';
                 break;
             case 'execute_script':
-                rendered = rendered + '<span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">' + $scope.truncateString(option.execute.script,maxlength,true); + ':' + $scope.truncateString(option.execute.thread,maxlength,true) + '</span></span>';
+                rendered = rendered + '<span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">'
+                    + $scope.truncateString(option.execute.script,maxlength,true); + ':' + $scope.truncateString(option.execute.thread,maxlength,true) + '</span></span>';
                 break;
             default:
-                rendered = rendered + ' <span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">' + $scope.truncateString(option.action,maxlength,true); + '</span></span>';
+                rendered = rendered + ' <span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">'
+                    + $scope.truncateString(option.action,maxlength,true); + '</span></span>';
         }
 
 

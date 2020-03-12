@@ -734,7 +734,6 @@ app.directive('keypressEvents', ['$rootScope', '$document', function($rootScope,
                 if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
                     e.preventDefault();
                     $rootScope.$broadcast('should.save');
-                    $
                 }
             });
         }
@@ -869,6 +868,21 @@ app.controller('webMode', ['$scope', function($scope) {
 
 app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location', '$anchorScroll', '$http', function($scope, $cookies, $sce, sdk, $location, $anchorScroll, $http) {
 
+    $scope.addStepVar = function() {
+        if (!$scope.ui.outgoing_message.step) {
+            $scope.ui.outgoing_message.step = [];
+        }
+        $scope.ui.outgoing_message.step.push({
+            key: 'key',
+            value: 'value',
+            parameter: ''
+        });
+    }
+
+    $scope.deleteStep = function(step, idx) {
+        $scope.ui.outgoing_message.step.splice(idx, 1);
+        $scope.makeDirty();
+    }
 
     $scope.addMetaVar = function() {
         if (!$scope.ui.outgoing_message.meta) {
@@ -1555,6 +1569,19 @@ app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location'
                     }
 
 
+                }
+
+                // new stuff for meta data
+                if ($scope.command.script.script[t].script[m].step) {
+                    for (var r = 0; r < $scope.command.script.script[t].script[m].step.length; r++) {
+                        if ($scope.command.script.script[t].script[m].step[r].key == '') {
+                            $scope.command.script.script[t].script[m].step[r].invalid = true;
+                            $scope.validationError('Step data must have a key name');
+                            return false;
+                        } else {
+                            delete($scope.command.script.script[t].script[m].step[r].invalid);
+                        }
+                    }
                 }
 
                 // new stuff for meta data
@@ -3103,10 +3130,12 @@ app.controller('scriptEditor', ['$scope', '$cookies', '$sce', 'sdk', '$location'
                 rendered = rendered + ' <span class="action"><i class="fa fa-check-square" aria-hidden="true"></i> Conversation Complete</span>';
                 break;
             case 'execute_script':
-                rendered = rendered + '<span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">' + $scope.truncateString(option.execute.script,maxlength,true); + ':' + $scope.truncateString(option.execute.thread,maxlength,true) + '</span></span>';
+                rendered = rendered + '<span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">'
+                    + $scope.truncateString(option.execute.script,maxlength,true); + ':' + $scope.truncateString(option.execute.thread,maxlength,true) + '</span></span>';
                 break;
             default:
-                rendered = rendered + ' <span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">' + $scope.truncateString(option.action,maxlength,true); + '</span></span>';
+                rendered = rendered + ' <span class="action"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Go to <span class="branch-title" ng-click="followOption(option||line,$event)">'
+                    + $scope.truncateString(option.action,maxlength,true); + '</span></span>';
         }
 
 
