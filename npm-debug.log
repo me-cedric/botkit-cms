@@ -1,32 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@4.1.2
-3 info using node@v7.5.0
-4 verbose stack Error: Failed to parse json
-4 verbose stack Trailing comma in object at 27:3
-4 verbose stack   }
-4 verbose stack   ^
-4 verbose stack     at parseError (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:390:11)
-4 verbose stack     at parseJson (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:79:23)
-4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:48:5
-4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16
-4 verbose stack     at tryToString (fs.js:426:3)
-4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:413:12)
-5 verbose cwd /Users/benbrown/Dropbox/bots/studio-editor-only
-6 error Darwin 15.6.0
-7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
-8 error node v7.5.0
-9 error npm  v4.1.2
-10 error file /Users/benbrown/Dropbox/bots/studio-editor-only/package.json
-11 error code EJSONPARSE
-12 error Failed to parse json
-12 error Trailing comma in object at 27:3
-12 error   }
-12 error   ^
-13 error File: /Users/benbrown/Dropbox/bots/studio-editor-only/package.json
-14 error Failed to parse package.json data.
-14 error package.json must be actual JSON, not just JavaScript.
-14 error
-14 error This is not a bug in npm.
-14 error Tell the package author to fix their package.json file. JSON.parse
-15 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'build' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info lifecycle botkit-cms@0.0.3~prebuild: botkit-cms@0.0.3
+6 silly lifecycle botkit-cms@0.0.3~prebuild: no script for prebuild, continuing
+7 info lifecycle botkit-cms@0.0.3~build: botkit-cms@0.0.3
+8 verbose lifecycle botkit-cms@0.0.3~build: unsafe-perm in lifecycle true
+9 verbose lifecycle botkit-cms@0.0.3~build: PATH: /usr/share/npm/bin/node-gyp-bin:/mnt/d/Projects/botkit-cms/node_modules/.bin:/usr/share/npm/bin/node-gyp-bin:/mnt/d/Projects/botkit-cms/node_modules/.bin:/mnt/d/Projects/botkit-cms/node_modules/.bin:/usr/share/npm/bin/node-gyp-bin:/mnt/d/Projects/botkit-cms/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Oculus/Support/oculus-runtime:/mnt/c/Python27/:/mnt/c/Python27/Scripts:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NGX:/mnt/d/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/d/Program Files/Java/jdk1.8.0_221/bin:/mnt/c/Gradle/gradle-6.0/bin:/mnt/c/Users/me-ce/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/me-ce/AppData/Local/Android/Sdk/tools/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/Users/me-ce/AppData/Local/Android/Sdk/build-tools/29.0.2:/mnt/c/Users/me-ce/AppData/Local/Programs/Python/Python38-32/Scripts/:/mnt/c/Users/me-ce/AppData/Local/Programs/Python/Python38-32/:/mnt/c/Users/me-ce/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/me-ce/AppData/Local/hyper/app-3.0.2/resources/bin:/mnt/c/Users/me-ce/AppData/Roaming/npm:/snap/bin
+10 verbose lifecycle botkit-cms@0.0.3~build: CWD: /mnt/d/Projects/botkit-cms
+11 silly lifecycle botkit-cms@0.0.3~build: Args: [ '-c', './node_modules/gulp/bin/gulp.js' ]
+12 verbose stack Error: write EIO
+12 verbose stack     at _errnoException (util.js:1022:11)
+12 verbose stack     at WriteWrap.afterWrite [as oncomplete] (net.js:880:14)
+13 verbose cwd /mnt/d/Projects/botkit-cms
+14 error Linux 4.4.0-18362-Microsoft
+15 error argv "/usr/bin/node" "/usr/bin/npm" "run" "build"
+16 error node v8.10.0
+17 error npm  v3.5.2
+18 error code EIO
+19 error errno EIO
+20 error syscall write
+21 error write EIO
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]
