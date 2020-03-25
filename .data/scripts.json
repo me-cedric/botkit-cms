@@ -143,6 +143,31 @@
     ],
     "variables": [
       {
+        "name": "iban",
+        "type": "string",
+        "id": 351
+      },
+      {
+        "name": "photo",
+        "type": "string",
+        "id": 475
+      },
+      {
+        "name": "sex",
+        "type": "string",
+        "id": 200
+      },
+      {
+        "name": "firstname",
+        "type": "string",
+        "id": 291
+      },
+      {
+        "name": "lastname",
+        "type": "string",
+        "id": 347
+      },
+      {
         "name": "env",
         "type": "string",
         "id": 171
@@ -181,50 +206,34 @@
         "script": [
           {
             "text": [
-              "Quelles application voulez-vous build?"
-            ],
-            "meta": [],
-            "collect": {
-              "key": "bip_selection",
-              "options": [
-                {
-                  "default": true,
-                  "handler": "executeOrder66"
-                }
-              ]
-            },
-            "step": [
-              {
-                "key": "generateButtons",
-                "value": "apps",
-                "parameter": ""
-              }
+              "Bienvenue dans l'application CGI"
             ]
           },
           {
             "text": [
-              "Sur quelle branche veux-tu builder?"
+              "Quel est votre prénom ?"
             ],
-            "meta": [
-              {
-                "key": "call",
-                "value": "/apps/{{vars.bip_selection}}"
-              }
-            ],
-            "step": [
-              {
-                "key": "bitrise",
-                "value": "getSlug",
-                "parameter": "{{vars.bip_selection}}"
-              },
-              {
-                "key": "generateButtons",
-                "value": "branches",
-                "parameter": ""
-              }
-            ],
+            "meta": [],
             "collect": {
-              "key": "branch",
+              "key": "firstname",
+              "options": [
+                {
+                  "default": true,
+                  "handler": "executeOrder66",
+                  "action": "next"
+                }
+              ]
+            },
+            "step": []
+          },
+          {
+            "text": [
+              "Merci {{ vars.firstname }}!\nQuel est votre nom ?"
+            ],
+            "meta": [],
+            "step": [],
+            "collect": {
+              "key": "lastname",
               "options": [
                 {
                   "default": true,
@@ -236,10 +245,10 @@
           },
           {
             "text": [
-              "Pour quel environnement veux-tu builder?"
+              "Êtes-vous ?"
             ],
             "collect": {
-              "key": "env",
+              "key": "sex",
               "options": [
                 {
                   "default": true,
@@ -248,32 +257,36 @@
                 }
               ]
             },
-            "step": [
-              {
-                "key": "generateButtons",
-                "value": "envs",
-                "parameter": ""
-              }
-            ],
+            "step": [],
             "quick_replies": [
               {
-                "title": "Hello",
-                "payload": "hello",
+                "title": "Un homme",
+                "payload": "man",
                 "content_type": "text"
               },
               {
-                "title": "Helloergerg",
-                "payload": "hellofvyjth",
+                "title": "Une femme",
+                "payload": "woman",
+                "content_type": "text"
+              },
+              {
+                "title": "Autre",
+                "payload": "other",
+                "content_type": "text"
+              },
+              {
+                "title": "Préfère ne pas répondre",
+                "payload": "noAnswer",
                 "content_type": "text"
               }
             ]
           },
           {
             "text": [
-              "Quel type de build?"
+              "Ok super, j'aurais besoin d'une photo"
             ],
             "collect": {
-              "key": "env",
+              "key": "photo",
               "options": [
                 {
                   "default": true,
@@ -289,6 +302,21 @@
                 "parameter": ""
               }
             ]
+          },
+          {
+            "text": [
+              "Nickel, j'aimerais ton IBAN pour préparer la paie"
+            ],
+            "collect": {
+              "key": "iban",
+              "options": [
+                {
+                  "default": true,
+                  "pattern": "default",
+                  "action": "next"
+                }
+              ]
+            }
           },
           {
             "action": "complete"
@@ -310,7 +338,7 @@
       }
     ],
     "id": "blip",
-    "modified": "2020-03-19T13:24:17.429Z",
+    "modified": "2020-03-25T16:25:47.691Z",
     "name": "blip"
   },
   {
