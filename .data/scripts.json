@@ -1,142 +1,11 @@
 [
   {
-    "command": "liste",
+    "command": "onboarding",
     "botId": 1,
-    "description": "listing",
+    "description": "onboarding cgi",
     "triggers": [
       {
-        "pattern": "listage",
-        "type": "string",
-        "id": 371
-      }
-    ],
-    "variables": [
-      {
-        "name": "plip",
-        "type": "string",
-        "id": 407
-      },
-      {
-        "name": "tofloutch",
-        "type": "string",
-        "id": 82
-      },
-      {
-        "name": "tolist",
-        "type": "string",
-        "id": 179
-      },
-      {
-        "name": "question_1",
-        "type": "string"
-      },
-      {
-        "name": "question_2",
-        "type": "string"
-      },
-      {
-        "name": "question_3",
-        "type": "string"
-      }
-    ],
-    "script": [
-      {
-        "topic": "default",
-        "script": [
-          {
-            "text": [
-              "Que voulez-vous lister"
-            ],
-            "attachments": [],
-            "collect": {
-              "key": "tolist",
-              "options": [
-                {
-                  "default": true,
-                  "pattern": "default",
-                  "action": "next"
-                }
-              ],
-              "multiple": false
-            },
-            "platforms": {
-              "web": {
-                "files": []
-              }
-            },
-            "meta": [
-              {
-                "key": "call",
-                "value": "/apps"
-              },
-              {
-                "key": "addonType",
-                "value": "quick_replies"
-              },
-              {
-                "key": "generate",
-                "value": "listButtons"
-              }
-            ],
-            "step": [
-              {
-                "key": "generateButtons",
-                "value": "apps",
-                "parameter": ""
-              }
-            ]
-          },
-          {
-            "text": [
-              "Voici la liste {{vars.tolist}}"
-            ],
-            "attachments": [],
-            "meta": [],
-            "platforms": {
-              "web": {
-                "files": []
-              }
-            },
-            "collect": null,
-            "step": [
-              {
-                "key": "fromVar",
-                "value": "{{vars.tolist}}",
-                "parameter": ""
-              }
-            ]
-          },
-          {
-            "action": "complete"
-          }
-        ]
-      },
-      {
-        "topic": "on_timeout",
-        "script": [
-          {
-            "text": [
-              "Looks like you got distracted. We can continue later."
-            ]
-          },
-          {
-            "action": "timeout"
-          }
-        ]
-      }
-    ],
-    "id": "liste",
-    "modified": "2020-03-12T08:34:12.518Z",
-    "name": "liste",
-    "is_fallback": false
-  },
-  {
-    "command": "blip",
-    "botId": 1,
-    "description": "blop",
-    "triggers": [
-      {
-        "pattern": "bliip",
+        "pattern": "onboarding",
         "type": "string",
         "id": 174
       }
@@ -166,38 +35,6 @@
         "name": "lastname",
         "type": "string",
         "id": 347
-      },
-      {
-        "name": "env",
-        "type": "string",
-        "id": 171
-      },
-      {
-        "name": "branch",
-        "type": "string",
-        "id": 347
-      },
-      {
-        "name": "bip_selection",
-        "type": "string",
-        "id": 240
-      },
-      {
-        "name": "bip-selection",
-        "type": "string",
-        "id": 440
-      },
-      {
-        "name": "question_1",
-        "type": "string"
-      },
-      {
-        "name": "question_2",
-        "type": "string"
-      },
-      {
-        "name": "question_3",
-        "type": "string"
       }
     ],
     "script": [
@@ -258,6 +95,7 @@
               ]
             },
             "step": [],
+            "disable_input": true,
             "quick_replies": [
               {
                 "title": "Un homme",
@@ -285,23 +123,23 @@
             "text": [
               "Ok super, j'aurais besoin d'une photo"
             ],
+            "disable_input": true,
+            "attachments": [
+              {
+                "type": "file",
+                "text": "upload"
+              }
+            ],
             "collect": {
               "key": "photo",
               "options": [
                 {
                   "default": true,
-                  "pattern": "default",
+                  "handler": "photoCheck",
                   "action": "next"
                 }
               ]
-            },
-            "step": [
-              {
-                "key": "generateButtons",
-                "value": "value",
-                "parameter": ""
-              }
-            ]
+            }
           },
           {
             "text": [
@@ -322,99 +160,10 @@
             "action": "complete"
           }
         ]
-      },
-      {
-        "topic": "on_timeout",
-        "script": [
-          {
-            "text": [
-              "Looks like you got distracted. We can continue later."
-            ]
-          },
-          {
-            "action": "timeout"
-          }
-        ]
       }
     ],
-    "id": "blip",
+    "id": "onboarding",
     "modified": "2020-03-25T16:25:47.691Z",
-    "name": "blip"
-  },
-  {
-    "command": "woosh",
-    "botId": 1,
-    "description": "zer",
-    "triggers": [
-      {
-        "pattern": "bliip",
-        "type": "string",
-        "id": 255
-      },
-      {
-        "type": "string",
-        "pattern": "woosh"
-      }
-    ],
-    "variables": [
-      {
-        "name": "question_1",
-        "type": "string"
-      },
-      {
-        "name": "question_2",
-        "type": "string"
-      },
-      {
-        "name": "question_3",
-        "type": "string"
-      }
-    ],
-    "script": [
-      {
-        "topic": "default",
-        "script": [
-          {
-            "text": [
-              "This is the woosh script. Customize me!"
-            ],
-            "collect": {
-              "key": "question_1",
-              "options": [
-                {
-                  "default": true,
-                  "pattern": "default",
-                  "action": "repeat"
-                },
-                {
-                  "pattern": "sample",
-                  "type": "string",
-                  "action": "next"
-                }
-              ]
-            }
-          },
-          {
-            "action": "complete"
-          }
-        ]
-      },
-      {
-        "topic": "on_timeout",
-        "script": [
-          {
-            "text": [
-              "Looks like you got distracted. We can continue later."
-            ]
-          },
-          {
-            "action": "timeout"
-          }
-        ]
-      }
-    ],
-    "id": "118d9368-5421-4bfc-8770-229e3e241ebf",
-    "modified": "2020-03-13T13:25:04.169Z",
-    "name": "woosh"
+    "name": "onboarding"
   }
 ]
