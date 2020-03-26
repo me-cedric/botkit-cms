@@ -90,34 +90,13 @@
                 {
                   "default": true,
                   "pattern": "default",
-                  "action": "next"
+                  "action": "repeat"
                 }
               ]
             },
             "step": [],
             "disable_input": true,
-            "quick_replies": [
-              {
-                "title": "Un homme",
-                "payload": "man",
-                "content_type": "text"
-              },
-              {
-                "title": "Une femme",
-                "payload": "woman",
-                "content_type": "text"
-              },
-              {
-                "title": "Autre",
-                "payload": "other",
-                "content_type": "text"
-              },
-              {
-                "title": "Préfère ne pas répondre",
-                "payload": "noAnswer",
-                "content_type": "text"
-              }
-            ]
+            "beforeSend": "genSexList"
           },
           {
             "text": [
@@ -145,12 +124,19 @@
             "text": [
               "Nickel, j'aimerais ton IBAN pour préparer la paie"
             ],
+            "disable_input": true,
+            "attachments": [
+              {
+                "type": "file",
+                "text": "upload"
+              }
+            ],
             "collect": {
               "key": "iban",
               "options": [
                 {
                   "default": true,
-                  "pattern": "default",
+                  "handler": "photoCheck",
                   "action": "next"
                 }
               ]
@@ -163,7 +149,7 @@
       }
     ],
     "id": "onboarding",
-    "modified": "2020-03-25T16:25:47.691Z",
+    "modified": "2020-03-26T15:41:07.985Z",
     "name": "onboarding"
   }
 ]
