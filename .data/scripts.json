@@ -35,6 +35,11 @@
         "name": "lastname",
         "type": "string",
         "id": 347
+      },
+      {
+        "name": "darktheme",
+        "type": "string",
+        "id": 348
       }
     ],
     "script": [
@@ -143,13 +148,58 @@
             }
           },
           {
+            "text": [
+              "Voulez-vous activer le dark theme ?"
+            ],
+            "disable_input": true,
+            "meta": [
+              {
+                "key": "nativeFunctionnality",
+                "value": "darktheme"
+              }
+            ],
+            "quick_replies": [
+              {
+                "title": "Oui",
+                "payload": "true",
+                "content_type": "text"
+              },
+              {
+                "title": "Non",
+                "payload": "false",
+                "content_type": "text"
+              }
+            ],
+            "collect": {
+              "key": "darktheme",
+              "options": [
+                {
+                  "default": true,
+                  "pattern": "default",
+                  "action": "repeat"
+                },
+                {
+                  "pattern": "true",
+                  "action": "next",
+                  "type": "string"
+                },
+                {
+                  "pattern": "false",
+                  "action": "next",
+                  "type": "string"
+                }
+              ]
+            },
+            "step": []
+          },
+          {
             "action": "complete"
           }
         ]
       }
     ],
     "id": "onboarding",
-    "modified": "2020-03-26T15:41:07.985Z",
+    "modified": "2020-03-27T11:12:05.006Z",
     "name": "onboarding"
   }
 ]
